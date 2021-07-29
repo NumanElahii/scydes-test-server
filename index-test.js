@@ -1,7 +1,4 @@
-const PORT = process.env.PORT || 8855;
 const express = require("express");
-// const webSocketServer = require("websocket").server;
-// const http = require("http");
 const {
   getUniqueID,
   sendMessage,
@@ -13,24 +10,18 @@ const { typesDef, exploitationEvents } = require("./types");
 const { infoGathering } = require("./clients/infoGathering");
 const { exploitationClient } = require("./clients/exploitation");
 
-// Spinning the http server and the websocket server.
-// const server = http.createServer();
-// server.listen(port);
+const { WebSocketServer } = require("ws");
 
-const INDEX = '/index.html';
+const PORT = process.env.PORT || 8855;
+const wss = new WebSocketServer({ port: PORT });
+
+// Spinning the http server and the websocket server.
 
 const server = express()
   .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
   .listen(PORT, () => console.log(`Listening on >>> ${PORT}`));
 
-// const wss = new Server({ server });
-
-// console.log("listening on >>> ws://127.0.0.1:8855");
-// console.log("--------------------------------------")
 const wsServer = new webSocketServer({ httpServer: server });
-
-// console.log("typesDef >>> ", typesDef.CONNECTION_SUCCESFUL)
-// console.log("exploitationEvents >>> ", exploitationEvents.GET_FILE_DATA)
 
 // I'm maintaining all active connections in this object
 let clients = {};
