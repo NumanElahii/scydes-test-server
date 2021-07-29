@@ -1,0 +1,6 @@
+{
+    "name": "Scydes websocket server",
+    "description": "scydes websocket server node+express",
+    "repository": "https://github.com/NumanElahii/scydes-test-server",
+    "keywords": ["node", "websocket"]
+  }
