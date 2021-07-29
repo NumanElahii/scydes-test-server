@@ -1,6 +1,6 @@
 const PORT = process.env.PORT || 8855;
 const express = require("express");
-// const webSocketServer = require("websocket").server;
+const webSocketServer = require("websocket").server;
 // const http = require("http");
 const {
   getUniqueID,
